@@ -1,3 +1,4 @@
+use std::collections::HashSet;
 
 #[tokio::main]
 async fn main() {
@@ -5,12 +6,16 @@ async fn main() {
 
     use futures_util::stream::StreamExt;
     const MAX_CONCURRENT_JUMPERS: usize = 100;
+    //let mut cameras = HashSet::new();
 
-    onvif::discovery::discover(std::time::Duration::from_secs(2))
+    let cameras_vec: Vec<onvif::discovery::Device>  = onvif::discovery::discover(std::time::Duration::from_secs(2))
         .await
         .unwrap()
-        .for_each_concurrent(MAX_CONCURRENT_JUMPERS, |addr| async move {
-            println!("Device found: {:?}", addr);
-        })
-        .await;
+        .collect().await;
+    //for camera in &cameras {
+        println!("{:#?}", cameras_vec);
+
+    let set: HashSet<onvif::discovery::Device> = cameras_vec.iter().cloned().collect();
+    println!("{:#?}", set);
+
 }
