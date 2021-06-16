@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+use url::Url;
 
 #[tokio::main]
 async fn main() {
@@ -12,10 +13,9 @@ async fn main() {
         .await
         .unwrap()
         .collect().await;
-    //for camera in &cameras {
-        println!("{:#?}", cameras_vec);
+    println!("{:#?}", cameras_vec);
 
-    let set: HashSet<onvif::discovery::Device> = cameras_vec.iter().cloned().collect();
+    let set: HashSet<Url> = cameras_vec.iter().map(|camera| camera.url.clone()).collect();
     println!("{:#?}", set);
 
 }

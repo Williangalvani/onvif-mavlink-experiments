@@ -7,6 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+url = "2.2.2"
 dotenv = "0.15.0"
 onvif = { git = "https://github.com/williangalvani/onvif-rs.git", branch = "zoom", features=["rustls"]}
 futures-util = "0.3.8"
