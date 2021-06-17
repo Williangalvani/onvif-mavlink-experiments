@@ -8,7 +8,6 @@ edition = "2018"
 
 [dependencies]
 url = "2.2.2"
-dotenv = "0.15.0"
 onvif = { git = "https://github.com/williangalvani/onvif-rs.git", branch = "zoom", features=["rustls"]}
 futures-util = "0.3.8"
 tokio = { version = "1.0.1", features = ["full"] }
